@@ -145,7 +145,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="top2000DBModelStoreContainer" CdmEntityContainer="top2000DBEntities1">
+        <EntityContainerMapping StorageEntityContainer="top2000DBModelStoreContainer" CdmEntityContainer="top2000DBEntities">
           <EntitySetMapping Name="Artist">
             <EntityTypeMapping TypeName="top2000DBModel.Artist">
               <MappingFragment StoreEntitySet="Artist">

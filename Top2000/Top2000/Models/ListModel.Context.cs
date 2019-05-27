@@ -13,10 +13,10 @@ namespace Top2000.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class top2000DBEntities1 : DbContext
+    public partial class top2000DBEntities : DbContext
     {
-        public top2000DBEntities1()
-            : base("name=top2000DBEntities1")
+        public top2000DBEntities()
+            : base("name=top2000DBEntities")
         {
         }
     

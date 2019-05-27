@@ -12,7 +12,7 @@ namespace Top2000.Controllers
 {
     public class ListController : Controller
     {
-        private top2000DBEntities1 db = new top2000DBEntities1();
+        private top2000DBEntities db = new top2000DBEntities();
 
         // GET: List
         public ActionResult Index()
