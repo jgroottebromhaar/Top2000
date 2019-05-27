@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="58a3450f4f7643a5b2713900f366785d" Name="Diagram1">
-        <EntityTypeShape EntityType="top2000DBModel.Artist" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="top2000DBModel.List" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="top2000DBModel.Song" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="top2000DBModel.FK__Song__ArtistID__7C4F7684" ManuallyRouted="false" />
-        <AssociationConnector Association="top2000DBModel.FK__List__SongID__7F2BE32F" ManuallyRouted="false" />
+      <Diagram DiagramId="54f28fd2d27d4218bd48598ddd5a279e" Name="Diagram1">
+        <EntityTypeShape EntityType="ListModel.Artist" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ListModel.List" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ListModel.Song" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="ListModel.FK__Song__ArtistID__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="ListModel.FK__List__SongID__7F2BE32F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
