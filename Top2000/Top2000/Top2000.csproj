@@ -171,6 +171,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -178,30 +179,30 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Artist.cs">
-      <DependentUpon>Top2000DBModel.tt</DependentUpon>
+      <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\List.cs">
-      <DependentUpon>Top2000DBModel.tt</DependentUpon>
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Song.cs">
-      <DependentUpon>Top2000DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Top2000DBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Top2000DBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Top2000DBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Top2000DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Top2000DBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Top2000DBModel.edmx</DependentUpon>
+      <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -215,24 +216,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Top2000DBModel.Context.tt">
+    <Content Include="Models\ListModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Top2000DBModel.edmx</DependentUpon>
-      <LastGenOutput>Top2000DBModel.Context.cs</LastGenOutput>
+      <DependentUpon>ListModel.edmx</DependentUpon>
+      <LastGenOutput>ListModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Top2000DBModel.tt">
+    <Content Include="Models\ListModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Top2000DBModel.edmx</DependentUpon>
-      <LastGenOutput>Top2000DBModel.cs</LastGenOutput>
+      <DependentUpon>ListModel.edmx</DependentUpon>
+      <LastGenOutput>ListModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Top2000DBModel.edmx">
+    <EntityDeploy Include="Models\ListModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Top2000DBModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ListModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Top2000DBModel.edmx.diagram">
-      <DependentUpon>Top2000DBModel.edmx</DependentUpon>
+    <Content Include="Models\ListModel.edmx.diagram">
+      <DependentUpon>ListModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -281,6 +282,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\List\Create.cshtml" />
+    <Content Include="Views\List\Delete.cshtml" />
+    <Content Include="Views\List\Details.cshtml" />
+    <Content Include="Views\List\Edit.cshtml" />
+    <Content Include="Views\List\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

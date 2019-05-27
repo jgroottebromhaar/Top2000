@@ -127,7 +127,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="top2000DBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="top2000DBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Artist" EntityType="Self.Artist" />
           <EntitySet Name="List" EntityType="Self.List" />
           <EntitySet Name="Song" EntityType="Self.Song" />
@@ -145,7 +145,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="top2000DBModelStoreContainer" CdmEntityContainer="top2000DBEntities">
+        <EntityContainerMapping StorageEntityContainer="top2000DBModelStoreContainer" CdmEntityContainer="top2000DBEntities1">
           <EntitySetMapping Name="Artist">
             <EntityTypeMapping TypeName="top2000DBModel.Artist">
               <MappingFragment StoreEntitySet="Artist">
