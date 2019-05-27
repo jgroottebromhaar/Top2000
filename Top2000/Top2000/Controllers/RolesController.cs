@@ -15,7 +15,6 @@ namespace Top2000.Controllers
 
         public ActionResult Index()
         {
-            // test
             // Populate Dropdown Lists
             var context = new Models.ApplicationDbContext();
 
