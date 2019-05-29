@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Top2000.Models.ListViewModel>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -29,3 +30,56 @@
         <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+@if(User.IsInRole("Admin"))
+{ 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+}
+@if (Model != null)
+{
+<table class="table">
+    <tr>
+        <th>
+            <p>Positie</p>
+        </th>
+        <th>
+            <p>Artiest</p>
+        </th>
+        <th>
+            <p>Nummer</p>
+        </th>
+        <th>
+            <p>Jaar</p>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListPosition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongYear)
+            </td>
+            @*@if (User.IsInRole("Admin"))
+            {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SongID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SongID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SongID })
+            </td>
+            }*@
+        </tr>
+    }
+</table>
+}
