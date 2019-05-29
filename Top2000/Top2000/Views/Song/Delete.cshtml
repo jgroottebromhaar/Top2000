@@ -1,4 +1,4 @@
-﻿@model Top2000.Models.List
+﻿@model Top2000.Models.Song
 
 @{
     ViewBag.Title = "Delete";
@@ -8,23 +8,31 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>List</h4>
+    <h4>Song</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ListPosition)
+            @Html.DisplayNameFor(model => model.SongName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ListPosition)
+            @Html.DisplayFor(model => model.SongName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Song.SongName)
+            @Html.DisplayNameFor(model => model.SongYear)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Song.SongName)
+            @Html.DisplayFor(model => model.SongYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist.ArtistName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artist.ArtistName)
         </dd>
 
     </dl>

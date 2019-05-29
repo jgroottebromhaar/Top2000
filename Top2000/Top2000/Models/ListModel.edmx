@@ -14,12 +14,11 @@
         </EntityType>
         <EntityType Name="List">
           <Key>
-            <PropertyRef Name="ListPosition" />
             <PropertyRef Name="ListYear" />
             <PropertyRef Name="SongID" />
           </Key>
-          <Property Name="ListPosition" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="ListYear" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="ListPosition" Type="int" />
+          <Property Name="ListYear" Type="int" Nullable="false" />
           <Property Name="SongID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Song">
@@ -28,10 +27,10 @@
           </Key>
           <Property Name="SongID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SongName" Type="nvarchar" MaxLength="100" />
-          <Property Name="SongYear" Type="nvarchar" MaxLength="4" />
+          <Property Name="SongYear" Type="int" />
           <Property Name="ArtistID" Type="int" />
         </EntityType>
-        <Association Name="FK__List__SongID__7F2BE32F">
+        <Association Name="FK__List__SongID__1DB06A4F">
           <End Role="Song" Type="Self.Song" Multiplicity="1" />
           <End Role="List" Type="Self.List" Multiplicity="*" />
           <ReferentialConstraint>
@@ -43,7 +42,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Song__ArtistID__7C4F7684">
+        <Association Name="FK__Song__ArtistID__1AD3FDA4">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Song" Type="Self.Song" Multiplicity="*" />
           <ReferentialConstraint>
@@ -59,11 +58,11 @@
           <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Song" EntityType="Self.Song" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__List__SongID__7F2BE32F" Association="Self.FK__List__SongID__7F2BE32F">
+          <AssociationSet Name="FK__List__SongID__1DB06A4F" Association="Self.FK__List__SongID__1DB06A4F">
             <End Role="Song" EntitySet="Song" />
             <End Role="List" EntitySet="List" />
           </AssociationSet>
-          <AssociationSet Name="FK__Song__ArtistID__7C4F7684" Association="Self.FK__Song__ArtistID__7C4F7684">
+          <AssociationSet Name="FK__Song__ArtistID__1AD3FDA4" Association="Self.FK__Song__ArtistID__1AD3FDA4">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Song" EntitySet="Song" />
           </AssociationSet>
@@ -79,18 +78,17 @@
           </Key>
           <Property Name="ArtistID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ArtistName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Song" Relationship="Self.FK__Song__ArtistID__7C4F7684" FromRole="Artist" ToRole="Song" />
+          <NavigationProperty Name="Song" Relationship="Self.FK__Song__ArtistID__1AD3FDA4" FromRole="Artist" ToRole="Song" />
         </EntityType>
         <EntityType Name="List">
           <Key>
-            <PropertyRef Name="ListPosition" />
             <PropertyRef Name="ListYear" />
             <PropertyRef Name="SongID" />
           </Key>
-          <Property Name="ListPosition" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ListYear" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListPosition" Type="Int32" />
+          <Property Name="ListYear" Type="Int32" Nullable="false" />
           <Property Name="SongID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Song" Relationship="Self.FK__List__SongID__7F2BE32F" FromRole="List" ToRole="Song" />
+          <NavigationProperty Name="Song" Relationship="Self.FK__List__SongID__1DB06A4F" FromRole="List" ToRole="Song" />
         </EntityType>
         <EntityType Name="Song">
           <Key>
@@ -98,12 +96,12 @@
           </Key>
           <Property Name="SongID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SongName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SongYear" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="SongYear" Type="Int32" />
           <Property Name="ArtistID" Type="Int32" />
-          <NavigationProperty Name="Artist" Relationship="Self.FK__Song__ArtistID__7C4F7684" FromRole="Song" ToRole="Artist" />
-          <NavigationProperty Name="List" Relationship="Self.FK__List__SongID__7F2BE32F" FromRole="Song" ToRole="List" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK__Song__ArtistID__1AD3FDA4" FromRole="Song" ToRole="Artist" />
+          <NavigationProperty Name="List" Relationship="Self.FK__List__SongID__1DB06A4F" FromRole="Song" ToRole="List" />
         </EntityType>
-        <Association Name="FK__Song__ArtistID__7C4F7684">
+        <Association Name="FK__Song__ArtistID__1AD3FDA4">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Song" Type="Self.Song" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +113,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__List__SongID__7F2BE32F">
+        <Association Name="FK__List__SongID__1DB06A4F">
           <End Role="Song" Type="Self.Song" Multiplicity="1" />
           <End Role="List" Type="Self.List" Multiplicity="*" />
           <ReferentialConstraint>
@@ -131,11 +129,11 @@
           <EntitySet Name="Artist" EntityType="Self.Artist" />
           <EntitySet Name="List" EntityType="Self.List" />
           <EntitySet Name="Song" EntityType="Self.Song" />
-          <AssociationSet Name="FK__Song__ArtistID__7C4F7684" Association="Self.FK__Song__ArtistID__7C4F7684">
+          <AssociationSet Name="FK__Song__ArtistID__1AD3FDA4" Association="Self.FK__Song__ArtistID__1AD3FDA4">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Song" EntitySet="Song" />
           </AssociationSet>
-          <AssociationSet Name="FK__List__SongID__7F2BE32F" Association="Self.FK__List__SongID__7F2BE32F">
+          <AssociationSet Name="FK__List__SongID__1DB06A4F" Association="Self.FK__List__SongID__1DB06A4F">
             <End Role="Song" EntitySet="Song" />
             <End Role="List" EntitySet="List" />
           </AssociationSet>

@@ -14,8 +14,8 @@ namespace Top2000.Models
     
     public partial class List
     {
-        public string ListPosition { get; set; }
-        public string ListYear { get; set; }
+        public Nullable<int> ListPosition { get; set; }
+        public int ListYear { get; set; }
         public int SongID { get; set; }
     
         public virtual Song Song { get; set; }

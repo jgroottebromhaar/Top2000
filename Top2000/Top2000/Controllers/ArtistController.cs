@@ -10,112 +10,107 @@ using Top2000.Models;
 
 namespace Top2000.Controllers
 {
-    public class ListController : Controller
+    public class ArtistController : Controller
     {
         private top2000DBEntities db = new top2000DBEntities();
 
-        // GET: List
+        // GET: Artist
         public ActionResult Index()
         {
-            var list = db.List.Include(l => l.Song);
-            return View(list.ToList());
+            return View(db.Artist.ToList());
         }
 
-        // GET: List/Details/5
+        // GET: Artist/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List list = db.List.Find(id);
-            if (list == null)
+            Artist artist = db.Artist.Find(id);
+            if (artist == null)
             {
                 return HttpNotFound();
             }
-            return View(list);
+            return View(artist);
         }
 
-        // GET: List/Create
+        // GET: Artist/Create
         public ActionResult Create()
         {
-            ViewBag.SongID = new SelectList(db.Song, "SongID", "SongName");
             return View();
         }
 
-        // POST: List/Create
+        // POST: Artist/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ListPosition,ListYear,SongID")] List list)
+        public ActionResult Create([Bind(Include = "ArtistID,ArtistName")] Artist artist)
         {
             if (ModelState.IsValid)
             {
-                db.List.Add(list);
+                db.Artist.Add(artist);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SongID = new SelectList(db.Song, "SongID", "SongName", list.SongID);
-            return View(list);
+            return View(artist);
         }
 
-        // GET: List/Edit/5
+        // GET: Artist/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List list = db.List.Find(id);
-            if (list == null)
+            Artist artist = db.Artist.Find(id);
+            if (artist == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SongID = new SelectList(db.Song, "SongID", "SongName", list.SongID);
-            return View(list);
+            return View(artist);
         }
 
-        // POST: List/Edit/5
+        // POST: Artist/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ListPosition,ListYear,SongID")] List list)
+        public ActionResult Edit([Bind(Include = "ArtistID,ArtistName")] Artist artist)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(list).State = EntityState.Modified;
+                db.Entry(artist).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SongID = new SelectList(db.Song, "SongID", "SongName", list.SongID);
-            return View(list);
+            return View(artist);
         }
 
-        // GET: List/Delete/5
+        // GET: Artist/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            List list = db.List.Find(id);
-            if (list == null)
+            Artist artist = db.Artist.Find(id);
+            if (artist == null)
             {
                 return HttpNotFound();
             }
-            return View(list);
+            return View(artist);
         }
 
-        // POST: List/Delete/5
+        // POST: Artist/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            List list = db.List.Find(id);
-            db.List.Remove(list);
+            Artist artist = db.Artist.Find(id);
+            db.Artist.Remove(artist);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

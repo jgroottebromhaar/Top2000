@@ -22,7 +22,7 @@ namespace Top2000.Models
     
         public int SongID { get; set; }
         public string SongName { get; set; }
-        public string SongYear { get; set; }
+        public Nullable<int> SongYear { get; set; }
         public Nullable<int> ArtistID { get; set; }
     
         public virtual Artist Artist { get; set; }

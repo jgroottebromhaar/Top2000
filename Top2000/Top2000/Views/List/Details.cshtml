@@ -1,4 +1,4 @@
-﻿@model Top2000.Models.Song
+﻿@model Top2000.Models.List
 
 @{
     ViewBag.Title = "Details";
@@ -7,36 +7,28 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Song</h4>
+    <h4>List</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.SongName)
+            @Html.DisplayNameFor(model => model.ListPosition)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SongName)
+            @Html.DisplayFor(model => model.ListPosition)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SongYear)
+            @Html.DisplayNameFor(model => model.Song.SongName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SongYear)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Artist.ArtistName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Artist.ArtistName)
+            @Html.DisplayFor(model => model.Song.SongName)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SongID }) |
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
