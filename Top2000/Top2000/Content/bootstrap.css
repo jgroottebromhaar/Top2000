@@ -240,6 +240,7 @@ th {
   h2,
   h3 {
     page-break-after: avoid;
+  
   }
   .navbar {
     display: none;
