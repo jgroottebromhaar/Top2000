@@ -11,5 +11,6 @@ namespace Top2000.Models
         public string ArtistName { get; set; }
         public string SongName { get; set; }
         public int? SongYear { get; set; }
+        public int? ListYear { get; set; }
     }
 }
