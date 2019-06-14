@@ -6,15 +6,9 @@
     <h2>Top 2000</h2>
     @using (Html.BeginForm("Index", "List", FormMethod.Get))
     {
-<form asp-controller="Liedjes" asp-action="Index">
-    @Html.TextBox("searching")<input type="submit" value="Search" placeholder="Zoek Nummer" />
-</form>
-    }
-    @if (User.IsInRole("Admin"))
-    {
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
+        <form asp-controller="Liedjes" asp-action="Index">
+            @Html.TextBox("searching")<input type="submit" value="Search" placeholder="Zoek Nummer" />
+        </form>
     }
 </div>
     @if (Model != null)
@@ -23,34 +17,33 @@
             <thead>
                 <tr>
                     <th>
-                        <p>Positie</p>
+                        @Html.ActionLink("Positie", "Index", new { sortOrder = ViewBag.ListPositionSortParm })
                     </th>
                     <th>
-                        <p>Artiest</p>
+                        @Html.ActionLink("Artiest", "Index", new { sortOrder = ViewBag.ArtistNameSortParm })
                     </th>
                     <th>
-                        <p>Nummer</p>
+                        @Html.ActionLink("Nummer", "Index", new { sortOrder = ViewBag.SongNameSortParm })
                     </th>
                     <th>
-                        <p>Jaar</p>
+                        @Html.ActionLink("Jaar", "Index", new { sortOrder = ViewBag.SongYearSortParm })
                     </th>
-                    <th></th>
-                </tr>
+                 </tr>
             </thead>
 
-            @foreach (var item in Model.Where(l => l.ListYear == 2017))
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td class="Plaats">
+                    <td>
                         @Html.DisplayFor(modelItem => item.ListPosition)
                     </td>
-                    <td class="Artiest">
+                    <td>
                         @Html.DisplayFor(modelItem => item.ArtistName)
                     </td>
-                    <td class="Titel">
+                    <td>
                         @Html.DisplayFor(modelItem => item.SongName)
                     </td>
-                    <td class="Jaar">
+                    <td>
                         @Html.DisplayFor(modelItem => item.SongYear)
                     </td>
                 </tr>
