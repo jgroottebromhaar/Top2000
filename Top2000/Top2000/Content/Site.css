@@ -8,13 +8,13 @@
 .navbar-inverse{
     background-color: white;
 }
+.navbar-inverse a:hover{
+    color: red !important;
+}
 .navbar-inverse .navbar-nav > li > a {
         color: black;
-    }
-
-.navbar-nav > li > a:hover{
-    background-color: grey;
 }
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -76,7 +76,8 @@ td.Plaats {
     background-color: #E8E8E8 !important;
     font-size: 28px;
     font-weight: bold;
-}
+    text-align: center;
+}   
 
 input.zoeken {
     border: 1px solid #CB272E !important;
@@ -86,14 +87,16 @@ input.zoeken {
     overflow: hidden;
     float: right;
 }
-
-    input.zoeken::placeholder {
-        color: #CB272E;
-    }
+input.zoeken::placeholder {
+    color: #CB272E;
+}
 
 div.lijsttop {
     background: #363b47;
     color: #fff;
     padding: 13px;
     height: 120px;
+}
+#searching{
+   color: black;
 }

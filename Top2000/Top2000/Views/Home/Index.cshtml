@@ -2,55 +2,58 @@
 @{
     ViewBag.Title = "Home Page";
 }
-    <div class="lijsttop">
-        <h2>Top 2000</h2>
-        <form asp-controller="Liedjes" asp-action="Index">
-            <input type="text" name="SearchString" placeholder="Zoeken op titel of artiest..." class="zoeken">
-        </form>
-        @if (User.IsInRole("Admin"))
-        {
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
-        }
-    </div>
-@if (Model != null)
-{
-<table id="lijsttop" class="table" data-sortable>
-    <thead>
-        <tr>
-            <th>
-                <p>Positie</p>
-            </th>
-            <th>
-                <p>Artiest</p>
-            </th>
-            <th>
-                <p>Nummer</p>
-            </th>
-            <th>
-                <p>Jaar</p>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-
-    @foreach (var item in Model)
+<div class="lijsttop">
+    <h2>Top 2000</h2>
+    @using (Html.BeginForm("Index", "List", FormMethod.Get))
     {
-<tr>
-    <td class="Plaats">
-        <p class="Plaats" @Html.DisplayFor(modelItem => item.ListPosition)>
-        </p></td>
-    <td class="Artiest">
-        @Html.DisplayFor(modelItem => item.ArtistName)
-    </td>
-    <td class="Titel">
-        @Html.DisplayFor(modelItem => item.SongName)
-    </td>
-    <td class="Jaar">
-        @Html.DisplayFor(modelItem => item.SongYear)
-    </td>
-</tr>
+<form asp-controller="Liedjes" asp-action="Index">
+    @Html.TextBox("searching")<input type="submit" value="Search" placeholder="Zoek Nummer" />
+</form>
     }
-</table>
-}
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+</div>
+    @if (Model != null)
+    {
+        <table id="lijsttop" class="table" data-sortable>
+            <thead>
+                <tr>
+                    <th>
+                        <p>Positie</p>
+                    </th>
+                    <th>
+                        <p>Artiest</p>
+                    </th>
+                    <th>
+                        <p>Nummer</p>
+                    </th>
+                    <th>
+                        <p>Jaar</p>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            @foreach (var item in Model.Where(l => l.ListYear == 2017))
+            {
+                <tr>
+                    <td class="Plaats">
+                        @Html.DisplayFor(modelItem => item.ListPosition)
+                    </td>
+                    <td class="Artiest">
+                        @Html.DisplayFor(modelItem => item.ArtistName)
+                    </td>
+                    <td class="Titel">
+                        @Html.DisplayFor(modelItem => item.SongName)
+                    </td>
+                    <td class="Jaar">
+                        @Html.DisplayFor(modelItem => item.SongYear)
+                    </td>
+                </tr>
+            }
+        </table>
+    }

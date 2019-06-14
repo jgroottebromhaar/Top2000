@@ -24,9 +24,10 @@ namespace Top2000.Controllers
                 ListPosition = x.ListPosition,
                 ArtistName = x.Song.Artist.ArtistName,
                 SongName = x.Song.SongName,
-                SongYear = x.Song.SongYear
+                SongYear = x.Song.SongYear,
+                ListYear = x.ListYear
             }
-            ).ToList();
+            ).OrderBy(x => x.ListPosition).ToList();
             return View(listVMList);
         }
 
