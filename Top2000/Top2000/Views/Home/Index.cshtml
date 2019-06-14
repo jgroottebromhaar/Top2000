@@ -4,11 +4,12 @@
 }
 <div class="lijsttop">
     <h2>Top 2000</h2>
-    @using (Html.BeginForm("Index", "List", FormMethod.Get))
+    @using (Html.BeginForm())
     {
-        <form asp-controller="Liedjes" asp-action="Index">
-            @Html.TextBox("searching")<input type="submit" value="Search" placeholder="Zoek Nummer" />
-        </form>
+        <p>
+            @Html.TextBox("SearchString", null, new { @placeholder = "Zoek titel of artiest..." })
+            <input type="submit" value="Search" />
+        </p>
     }
 </div>
     @if (Model != null)
