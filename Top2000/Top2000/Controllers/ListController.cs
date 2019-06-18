@@ -15,10 +15,9 @@ namespace Top2000.Controllers
         private top2000DBEntities db = new top2000DBEntities();
 
         // GET: List
-        public ActionResult Index()
+        public ActionResult Index(string searching)
         {
-            var list = db.List.Include(l => l.Song);
-            return View(list.ToList());
+            return View(db.List.Where(x => x.Song.SongName.Contains(searching) || searching == null).ToList());
         }
 
         // GET: List/Details/5
