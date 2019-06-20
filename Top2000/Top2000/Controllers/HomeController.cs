@@ -13,10 +13,9 @@ namespace Top2000.Controllers
     public class HomeController : Controller
     {
         private top2000DBEntities db = new top2000DBEntities();
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString, int ListYear = 2018)
         {
-            int year = 2018;
-
+            // Viewbags voor de Sorteer functies
             ViewBag.ListPositionSortParm = String.IsNullOrEmpty(sortOrder) ? "ListPosition_desc" : "";
             ViewBag.SongNameSortParm = sortOrder == "SongName" ? "SongName_desc" : "SongName";
             ViewBag.ArtistNameSortParm = sortOrder == "ArtistName" ? "ArtistName_desc" : "ArtistName";
@@ -26,6 +25,7 @@ namespace Top2000.Controllers
 
             ListViewModel ListVM = new ListViewModel();
 
+            // Data uit database halen en in een ViewModel plaatsen
             List<ListViewModel> listVMList = listList.Select(x => new ListViewModel
             {
                 ListPosition = x.ListPosition,
@@ -35,40 +35,42 @@ namespace Top2000.Controllers
                 ListYear = x.ListYear
             }).ToList();
 
+            // Zoekbalk functionaliteit
             if (!String.IsNullOrEmpty(searchString))
             {
                 listVMList = listVMList.Where(s => s.SongName.Contains(searchString)
                                        || s.ArtistName.Contains(searchString)).ToList();
             }
 
+            // Switch voor sorteer functions
             switch (sortOrder)
             {
                 case "ListPosition_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderByDescending(s => s.ListPosition).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.ListPosition).ToList();
                     break;
                 case "SongName":
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderBy(s => s.SongName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.SongName).ToList();
                     break;
                 case "SongName_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderByDescending(s => s.SongName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.SongName).ToList();
                     break;
                 case "ArtistName":
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderBy(s => s.ArtistName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.ArtistName).ToList();
                     break;
                 case "ArtistName_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderByDescending(s => s.ArtistName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.ArtistName).ToList();
                     break;
                 case "SongYear":
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderBy(s => s.SongYear).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.SongYear).ToList();
                     break;
                 case "SongYear_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderByDescending(s => s.SongYear).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.SongYear).ToList();
                     break;
                 default:
-                    listVMList = listVMList.Where(s => s.ListYear == year).OrderBy(s => s.ListPosition).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.ListPosition).ToList();
                     break;
             }
-            return View(listVMList);
+           return View(listVMList);
         }
     }
 }

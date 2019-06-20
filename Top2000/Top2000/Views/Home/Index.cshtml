@@ -2,52 +2,86 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<div class="lijsttop">
-    <h2>Top 2000</h2>
-    @using (Html.BeginForm())
-    {
-        <p>
-            @Html.TextBox("SearchString", null, new { @placeholder = "Zoek titel of artiest..." })
-            <input type="submit" value="Search" />
-        </p>
-    }
-</div>
-    @if (Model != null)
-    {
-        <table id="lijsttop" class="table" data-sortable>
-            <thead>
-                <tr>
-                    <th>
-                        @Html.ActionLink("Positie", "Index", new { sortOrder = ViewBag.ListPositionSortParm })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Artiest", "Index", new { sortOrder = ViewBag.ArtistNameSortParm })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Nummer", "Index", new { sortOrder = ViewBag.SongNameSortParm })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Jaar", "Index", new { sortOrder = ViewBag.SongYearSortParm })
-                    </th>
-                 </tr>
-            </thead>
+    <div class="lijsttop">
+        <h2>Top 2000</h2>
+        @using (Html.BeginForm())
+        {
+            <p>
+                @Html.TextBox("SearchString", null, new { @placeholder = "Zoek titel of artiest..." })
+                <input type="submit" value="Search" />
+            </p>
+        }   
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ListPosition)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ArtistName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SongName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SongYear)
-                    </td>
-                </tr>
-            }
-        </table>
-    }
+    </div>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Lijstjaar <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header"><strong>Jaar</strong></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2018", "Index", new { ListYear = 2018 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2017", "Index", new { ListYear = 2017 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2016", "Index", new { ListYear = 2016 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2015", "Index", new { ListYear = 2015 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2014", "Index", new { ListYear = 2014 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2013", "Index", new { ListYear = 2013 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2012", "Index", new { ListYear = 2012 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2011", "Index", new { ListYear = 2011 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2010", "Index", new { ListYear = 2010 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2009", "Index", new { ListYear = 2009 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2008", "Index", new { ListYear = 2008 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2007", "Index", new { ListYear = 2007 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2006", "Index", new { ListYear = 2006 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2005", "Index", new { ListYear = 2005 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2004", "Index", new { ListYear = 2004 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2003", "Index", new { ListYear = 2003 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2002", "Index", new { ListYear = 2002 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2001", "Index", new { ListYear = 2001 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 2000", "Index", new { ListYear = 2000 })</a></li>
+            <li><a href="#">@Html.ActionLink("Lijst 1999", "Index", new { ListYear = 1999 })</a></li>
+        </ul>
+    </div>
+
+
+@if (Model != null)
+{
+
+
+    <table id="lijsttop" class="table" data-sortable>
+        <thead>
+            <tr>
+                <th>
+                    @Html.ActionLink("Positie", "Index", new { sortOrder = ViewBag.ListPositionSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Artiest", "Index", new { sortOrder = ViewBag.ArtistNameSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Nummer", "Index", new { sortOrder = ViewBag.SongNameSortParm })
+                </th>
+                <th>
+                    @Html.ActionLink("Jaar", "Index", new { sortOrder = ViewBag.SongYearSortParm })
+                </th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListPosition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongYear)
+                </td>
+            </tr>
+        }
+    </table>
+}
