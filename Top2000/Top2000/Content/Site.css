@@ -35,6 +35,18 @@ textarea {
     max-width: 280px;
 }
 
+/*p.Plaats {
+    height: 35px;
+    width: 35px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #ff0707;
+    color: white;
+    font-weight: bold;
+}*/
+
 p.Plaats {
     text-align: center;
 }
@@ -67,12 +79,24 @@ td.Plaats {
     text-align: center;
 }   
 
-#SearchString {
-    color: #FF0000;
+input.zoeken {
+    border: 1px solid #CB272E !important;
+    color: #CB272E;
+    padding: 5px;
+    width: 100%;
+    overflow: hidden;
+    float: right;
+}
+input.zoeken::placeholder {
+    color: #CB272E;
 }
 
 div.lijsttop {
     background: #363b47;
+    color: #fff;
     padding: 13px;
     height: 120px;
 }
+#searching{
+   color: black;
+} 
