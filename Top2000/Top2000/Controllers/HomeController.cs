@@ -13,7 +13,7 @@ namespace Top2000.Controllers
     public class HomeController : Controller
     {
         private top2000DBEntities db = new top2000DBEntities();
-        public ActionResult Index(string sortOrder, string searchString, int ListYear = 2018)
+        public ActionResult Index(string sortOrder, string searchString, int listYear = 2018)
         {
             // Viewbags voor de Sorteer functies
             ViewBag.ListPositionSortParm = String.IsNullOrEmpty(sortOrder) ? "ListPosition_desc" : "";
@@ -46,28 +46,28 @@ namespace Top2000.Controllers
             switch (sortOrder)
             {
                 case "ListPosition_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.ListPosition).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.ListPosition).ToList();
                     break;
                 case "SongName":
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.SongName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.SongName).ToList();
                     break;
                 case "SongName_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.SongName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.SongName).ToList();
                     break;
                 case "ArtistName":
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.ArtistName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.ArtistName).ToList();
                     break;
                 case "ArtistName_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.ArtistName).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.ArtistName).ToList();
                     break;
                 case "SongYear":
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.SongYear).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.SongYear).ToList();
                     break;
                 case "SongYear_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderByDescending(s => s.SongYear).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.SongYear).ToList();
                     break;
                 default:
-                    listVMList = listVMList.Where(s => s.ListYear == ListYear).OrderBy(s => s.ListPosition).ToList();
+                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.ListPosition).ToList();
                     break;
             }
            return View(listVMList);
