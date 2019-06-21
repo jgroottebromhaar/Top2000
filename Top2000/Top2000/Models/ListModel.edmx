@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ListModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="top2000DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Artist">
           <Key>
             <PropertyRef Name="ArtistID" />
@@ -30,7 +30,7 @@
           <Property Name="SongYear" Type="int" />
           <Property Name="ArtistID" Type="int" />
         </EntityType>
-        <Association Name="FK__List__SongID__1DB06A4F">
+        <Association Name="FK__List__SongID__40058253">
           <End Role="Song" Type="Self.Song" Multiplicity="1" />
           <End Role="List" Type="Self.List" Multiplicity="*" />
           <ReferentialConstraint>
@@ -42,7 +42,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Song__ArtistID__1AD3FDA4">
+        <Association Name="FK__Song__ArtistID__3D2915A8">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Song" Type="Self.Song" Multiplicity="*" />
           <ReferentialConstraint>
@@ -54,15 +54,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ListModelStoreContainer">
+        <Function Name="getAllYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getListForYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ListYear" Type="int" Mode="In" />
+        </Function>
+        <Function Name="searchFunction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchString" Type="nvarchar" Mode="In" />
+          <Parameter Name="selectedYear" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="top2000DBModelStoreContainer">
           <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Song" EntityType="Self.Song" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__List__SongID__1DB06A4F" Association="Self.FK__List__SongID__1DB06A4F">
+          <AssociationSet Name="FK__List__SongID__40058253" Association="Self.FK__List__SongID__40058253">
             <End Role="Song" EntitySet="Song" />
             <End Role="List" EntitySet="List" />
           </AssociationSet>
-          <AssociationSet Name="FK__Song__ArtistID__1AD3FDA4" Association="Self.FK__Song__ArtistID__1AD3FDA4">
+          <AssociationSet Name="FK__Song__ArtistID__3D2915A8" Association="Self.FK__Song__ArtistID__3D2915A8">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Song" EntitySet="Song" />
           </AssociationSet>
@@ -71,14 +79,14 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ListModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="top2000DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Artist">
           <Key>
             <PropertyRef Name="ArtistID" />
           </Key>
           <Property Name="ArtistID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ArtistName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Song" Relationship="Self.FK__Song__ArtistID__1AD3FDA4" FromRole="Artist" ToRole="Song" />
+          <NavigationProperty Name="Song" Relationship="Self.FK__Song__ArtistID__3D2915A8" FromRole="Artist" ToRole="Song" />
         </EntityType>
         <EntityType Name="List">
           <Key>
@@ -88,7 +96,7 @@
           <Property Name="ListPosition" Type="Int32" />
           <Property Name="ListYear" Type="Int32" Nullable="false" />
           <Property Name="SongID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Song" Relationship="Self.FK__List__SongID__1DB06A4F" FromRole="List" ToRole="Song" />
+          <NavigationProperty Name="Song" Relationship="Self.FK__List__SongID__40058253" FromRole="List" ToRole="Song" />
         </EntityType>
         <EntityType Name="Song">
           <Key>
@@ -98,10 +106,10 @@
           <Property Name="SongName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SongYear" Type="Int32" />
           <Property Name="ArtistID" Type="Int32" />
-          <NavigationProperty Name="Artist" Relationship="Self.FK__Song__ArtistID__1AD3FDA4" FromRole="Song" ToRole="Artist" />
-          <NavigationProperty Name="List" Relationship="Self.FK__List__SongID__1DB06A4F" FromRole="Song" ToRole="List" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK__Song__ArtistID__3D2915A8" FromRole="Song" ToRole="Artist" />
+          <NavigationProperty Name="List" Relationship="Self.FK__List__SongID__40058253" FromRole="Song" ToRole="List" />
         </EntityType>
-        <Association Name="FK__Song__ArtistID__1AD3FDA4">
+        <Association Name="FK__Song__ArtistID__3D2915A8">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Song" Type="Self.Song" Multiplicity="*" />
           <ReferentialConstraint>
@@ -113,7 +121,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__List__SongID__1DB06A4F">
+        <Association Name="FK__List__SongID__40058253">
           <End Role="Song" Type="Self.Song" Multiplicity="1" />
           <End Role="List" Type="Self.List" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,23 +137,43 @@
           <EntitySet Name="Artist" EntityType="Self.Artist" />
           <EntitySet Name="List" EntityType="Self.List" />
           <EntitySet Name="Song" EntityType="Self.Song" />
-          <AssociationSet Name="FK__Song__ArtistID__1AD3FDA4" Association="Self.FK__Song__ArtistID__1AD3FDA4">
+          <AssociationSet Name="FK__Song__ArtistID__3D2915A8" Association="Self.FK__Song__ArtistID__3D2915A8">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Song" EntitySet="Song" />
           </AssociationSet>
-          <AssociationSet Name="FK__List__SongID__1DB06A4F" Association="Self.FK__List__SongID__1DB06A4F">
+          <AssociationSet Name="FK__List__SongID__40058253" Association="Self.FK__List__SongID__40058253">
             <End Role="Song" EntitySet="Song" />
             <End Role="List" EntitySet="List" />
           </AssociationSet>
+          <FunctionImport Name="getAllYears" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="getListForYear" ReturnType="Collection(top2000DBModel.getListForYear_Result)">
+            <Parameter Name="ListYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="searchFunction" ReturnType="Collection(top2000DBModel.searchFunction_Result)">
+            <Parameter Name="searchString" Mode="In" Type="String" />
+            <Parameter Name="selectedYear" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="getListForYear_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="searchFunction_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ListModelStoreContainer" CdmEntityContainer="top2000DBEntities">
+        <EntityContainerMapping StorageEntityContainer="top2000DBModelStoreContainer" CdmEntityContainer="top2000DBEntities">
           <EntitySetMapping Name="Artist">
-            <EntityTypeMapping TypeName="ListModel.Artist">
+            <EntityTypeMapping TypeName="top2000DBModel.Artist">
               <MappingFragment StoreEntitySet="Artist">
                 <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
                 <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
@@ -153,7 +181,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="List">
-            <EntityTypeMapping TypeName="ListModel.List">
+            <EntityTypeMapping TypeName="top2000DBModel.List">
               <MappingFragment StoreEntitySet="List">
                 <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
                 <ScalarProperty Name="ListYear" ColumnName="ListYear" />
@@ -162,7 +190,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Song">
-            <EntityTypeMapping TypeName="ListModel.Song">
+            <EntityTypeMapping TypeName="top2000DBModel.Song">
               <MappingFragment StoreEntitySet="Song">
                 <ScalarProperty Name="SongID" ColumnName="SongID" />
                 <ScalarProperty Name="SongName" ColumnName="SongName" />
@@ -171,6 +199,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getAllYears" FunctionName="top2000DBModel.Store.getAllYears" />
+          <FunctionImportMapping FunctionImportName="getListForYear" FunctionName="top2000DBModel.Store.getListForYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getListForYear_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="searchFunction" FunctionName="top2000DBModel.Store.searchFunction">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.searchFunction_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

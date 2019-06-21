@@ -183,6 +183,9 @@
     <Compile Include="Models\Artist.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getListForYear_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\List.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
@@ -204,6 +207,9 @@
     </Compile>
     <Compile Include="Models\ListViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\searchFunction_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Song.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>

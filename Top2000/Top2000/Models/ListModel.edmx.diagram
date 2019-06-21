@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0f3031b98e7348ff818c18fb2009320d" Name="Diagram1">
-        <EntityTypeShape EntityType="ListModel.Artist" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ListModel.List" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ListModel.Song" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="ListModel.FK__Song__ArtistID__1AD3FDA4" ManuallyRouted="false" />
-        <AssociationConnector Association="ListModel.FK__List__SongID__1DB06A4F" ManuallyRouted="false" />
+      <Diagram DiagramId="4454c987a91b459c94771bf944ba1b48" Name="Diagram1">
+        <EntityTypeShape EntityType="top2000DBModel.Artist" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="top2000DBModel.List" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="top2000DBModel.Song" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="top2000DBModel.FK__Song__ArtistID__3D2915A8" ManuallyRouted="false" />
+        <AssociationConnector Association="top2000DBModel.FK__List__SongID__40058253" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

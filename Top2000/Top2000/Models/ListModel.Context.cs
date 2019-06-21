@@ -12,6 +12,8 @@ namespace Top2000.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class top2000DBEntities : DbContext
     {
@@ -28,5 +30,32 @@ namespace Top2000.Models
         public virtual DbSet<Artist> Artist { get; set; }
         public virtual DbSet<List> List { get; set; }
         public virtual DbSet<Song> Song { get; set; }
+    
+        public virtual ObjectResult<Nullable<int>> getAllYears()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("getAllYears");
+        }
+    
+        public virtual ObjectResult<getListForYear_Result> getListForYear(Nullable<int> listYear)
+        {
+            var listYearParameter = listYear.HasValue ?
+                new ObjectParameter("ListYear", listYear) :
+                new ObjectParameter("ListYear", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getListForYear_Result>("getListForYear", listYearParameter);
+        }
+    
+        public virtual ObjectResult<searchFunction_Result> searchFunction(string searchString, Nullable<int> selectedYear)
+        {
+            var searchStringParameter = searchString != null ?
+                new ObjectParameter("searchString", searchString) :
+                new ObjectParameter("searchString", typeof(string));
+    
+            var selectedYearParameter = selectedYear.HasValue ?
+                new ObjectParameter("selectedYear", selectedYear) :
+                new ObjectParameter("selectedYear", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<searchFunction_Result>("searchFunction", searchStringParameter, selectedYearParameter);
+        }
     }
 }

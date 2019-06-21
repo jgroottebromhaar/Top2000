@@ -5,15 +5,17 @@
     background-color: #b0241b;
 }
 
-.navbar-inverse{
+.navbar-inverse {
     background-color: white;
 }
-.navbar-inverse a:hover{
-    color: red !important;
-}
-.navbar-inverse .navbar-nav > li > a {
+
+    .navbar-inverse a:hover {
+        color: red !important;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
         color: black;
-}
+    }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -34,18 +36,6 @@ select,
 textarea {
     max-width: 280px;
 }
-
-/*p.Plaats {
-    height: 35px;
-    width: 35px;
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 50%;
-    background: #ff0707;
-    color: white;
-    font-weight: bold;
-}*/
 
 p.Plaats {
     text-align: center;
@@ -77,26 +67,14 @@ td.Plaats {
     font-size: 28px;
     font-weight: bold;
     text-align: center;
-}   
-
-input.zoeken {
-    border: 1px solid #CB272E !important;
-    color: #CB272E;
-    padding: 5px;
-    width: 100%;
-    overflow: hidden;
-    float: right;
 }
-input.zoeken::placeholder {
-    color: #CB272E;
+
+#searchString {
+    color: #FF0000;
 }
 
 div.lijsttop {
     background: #363b47;
-    color: #fff;
     padding: 13px;
     height: 120px;
 }
-#searching{
-   color: black;
-} 

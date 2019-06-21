@@ -13,64 +13,31 @@ namespace Top2000.Controllers
     public class HomeController : Controller
     {
         private top2000DBEntities db = new top2000DBEntities();
-        public ActionResult Index(string sortOrder, string searchString, int listYear = 2018)
+        public ActionResult Index(int? year)
         {
-            // Viewbags voor de Sorteer functies
-            ViewBag.ListPositionSortParm = String.IsNullOrEmpty(sortOrder) ? "ListPosition_desc" : "";
-            ViewBag.SongNameSortParm = sortOrder == "SongName" ? "SongName_desc" : "SongName";
-            ViewBag.ArtistNameSortParm = sortOrder == "ArtistName" ? "ArtistName_desc" : "ArtistName";
-            ViewBag.SongYearSortParm = sortOrder == "SongYear" ? "SongYear_desc" : "SongYear";
-
-            List<List> listList = db.List.ToList();
-
-            ListViewModel ListVM = new ListViewModel();
-
-            // Data uit database halen en in een ViewModel plaatsen
-            List<ListViewModel> listVMList = listList.Select(x => new ListViewModel
+            ViewBag.Years = db.getAllYears().ToList();
+            if (year == null)
             {
-                ListPosition = x.ListPosition,
-                ArtistName = x.Song.Artist.ArtistName,
-                SongName = x.Song.SongName,
-                SongYear = x.Song.SongYear,
-                ListYear = x.ListYear
-            }).ToList();
-
-            // Zoekbalk functionaliteit
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                listVMList = listVMList.Where(s => s.SongName.Contains(searchString)
-                                       || s.ArtistName.Contains(searchString)).ToList();
+                year = db.List.Max(y => y.ListYear);
+                return View(db.getListForYear(year));
             }
-
-            // Switch voor sorteer functions
-            switch (sortOrder)
+            else
             {
-                case "ListPosition_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.ListPosition).ToList();
-                    break;
-                case "SongName":
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.SongName).ToList();
-                    break;
-                case "SongName_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.SongName).ToList();
-                    break;
-                case "ArtistName":
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.ArtistName).ToList();
-                    break;
-                case "ArtistName_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.ArtistName).ToList();
-                    break;
-                case "SongYear":
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.SongYear).ToList();
-                    break;
-                case "SongYear_desc":
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderByDescending(s => s.SongYear).ToList();
-                    break;
-                default:
-                    listVMList = listVMList.Where(s => s.ListYear == listYear).OrderBy(s => s.ListPosition).ToList();
-                    break;
+                return View(db.getListForYear(year));
             }
-           return View(listVMList);
+        }
+
+        public ActionResult SearchResult(string search, int? year)
+        {
+            ViewBag.Search = db.searchFunction(search, year).ToList();
+            if (year == null)
+            {
+                return View(db.searchFunction(search, year));
+            }
+            else
+            {
+                return View(db.searchFunction(search, year));
+            }
         }
     }
 }
