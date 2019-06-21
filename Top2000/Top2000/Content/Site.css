@@ -9,13 +9,13 @@
     background-color: white;
 }
 
-    .navbar-inverse a:hover {
-        color: red !important;
-    }
+.navbar-inverse a:hover {
+    color: red !important;
+}
 
-    .navbar-inverse .navbar-nav > li > a {
-        color: black;
-    }
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+}
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -49,17 +49,17 @@ p.Jaar {
     background-color: #f4f4f4;
 }
 
-    .table tr th {
-        background-color: #E8E8E8;
-        color: #454E59;
-        border-top: 0px solid !important;
-    }
+.table tr th {
+    background-color: #E8E8E8;
+    color: #454E59;
+    border-top: 0px solid !important;
+}
 
-    .table tr td {
-        background-color: #f4f4f4;
-        color: #454E59;
-        border-top: 1px solid #808080 !important;
-    }
+.table tr td {
+    background-color: #f4f4f4;
+    color: #454E59;
+    border-top: 1px solid #808080 !important;
+}
 
 
 td.Plaats {
@@ -69,8 +69,12 @@ td.Plaats {
     text-align: center;
 }
 
-#searchString {
+#search {
     color: #FF0000;
+}
+
+#searchbtn {
+    color: #000
 }
 
 div.lijsttop {
