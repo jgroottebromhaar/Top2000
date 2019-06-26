@@ -27,6 +27,20 @@ namespace Top2000.Controllers
             }
         }
 
+        public ActionResult ArtistSongs(string artist)
+        {
+            ViewBag.Artist = db.getArtists().ToList();
+            if (artist == null)
+            {
+                artist = db.Artist.Min(y => y.ArtistName);
+                return View(db.getArtistSongs(artist));
+            }
+            else
+            {
+                return View(db.getArtistSongs(artist));
+            }
+        }
+
         public ActionResult SearchResult(string search, int? year)
         {
             ViewBag.Search = db.searchFunction(search, year).ToList();

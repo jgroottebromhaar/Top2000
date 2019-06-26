@@ -57,5 +57,19 @@ namespace Top2000.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<searchFunction_Result>("searchFunction", searchStringParameter, selectedYearParameter);
         }
+    
+        public virtual ObjectResult<getArtistSongs_Result> getArtistSongs(string artistName)
+        {
+            var artistNameParameter = artistName != null ?
+                new ObjectParameter("artistName", artistName) :
+                new ObjectParameter("artistName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getArtistSongs_Result>("getArtistSongs", artistNameParameter);
+        }
+    
+        public virtual ObjectResult<string> getArtists()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getArtists");
+        }
     }
 }

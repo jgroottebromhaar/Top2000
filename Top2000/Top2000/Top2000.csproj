@@ -183,6 +183,9 @@
     <Compile Include="Models\Artist.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getArtistSongs_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getListForYear_Result.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
@@ -304,6 +307,7 @@
     <Content Include="Views\Artist\Details.cshtml" />
     <Content Include="Views\Artist\Edit.cshtml" />
     <Content Include="Views\Artist\Index.cshtml" />
+    <Content Include="Views\Home\ArtistSongs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
