@@ -71,5 +71,23 @@ namespace Top2000.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getArtists");
         }
+    
+        public virtual ObjectResult<getAveragePositionOfArtistSong_Result> getAveragePositionOfArtistSong(string artistName)
+        {
+            var artistNameParameter = artistName != null ?
+                new ObjectParameter("artistName", artistName) :
+                new ObjectParameter("artistName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAveragePositionOfArtistSong_Result>("getAveragePositionOfArtistSong", artistNameParameter);
+        }
+    
+        public virtual ObjectResult<getAveragePositionOfArtistSong1_Result> getAveragePositionOfArtistSong1(string artistName)
+        {
+            var artistNameParameter = artistName != null ?
+                new ObjectParameter("artistName", artistName) :
+                new ObjectParameter("artistName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAveragePositionOfArtistSong1_Result>("getAveragePositionOfArtistSong1", artistNameParameter);
+        }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Top2000.Models.getAveragePositionOfArtistSong1_Result>
+
+<div class="lijsttop">
+    <h2>Gemiddelde positie van de nummers van één artiest</h2>
+    @using (Html.BeginForm())
+    {
+        <p>
+            @Html.DropDownList("artist", new SelectList(ViewBag.Artist, "artist"), new { onChange = "this.form.submit()" })
+        </p>
+    }
+</div>
+
+@if (Model != null)
+{
+    <table id="lijsttop" class="table table-striped table-responsive" data-sortable>
+        <tr>
+            <th>Gemiddelde Positie</th>
+            <th>Artiest</th>
+            <th>Nummer</th>
+            <th>Jaar</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListPosition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongYear)
+                </td>
+            </tr>
+        }
+    </table>
+}
