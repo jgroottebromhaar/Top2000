@@ -176,7 +176,7 @@
           <Parameter Name="artistName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getTop10ForYear" ReturnType="Collection(top2000DBModel.getTop10ForYear_Result)">
-            <Parameter Name="ListYear" Mode="In" Type="Int32" />
+          <Parameter Name="ListYear" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getListForYear_Result">

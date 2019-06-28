@@ -36,28 +36,6 @@ namespace Top2000.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("getAllYears");
         }
     
-        public virtual ObjectResult<string> getArtists(Nullable<int> selectedYear)
-        {
-            var selectedYearParameter = selectedYear.HasValue ?
-                new ObjectParameter("selectedYear", selectedYear) :
-                new ObjectParameter("selectedYear", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getArtists", selectedYearParameter);
-        }
-    
-        public virtual ObjectResult<getArtistSongs_Result> getArtistSongs(string artistName, Nullable<int> selectedYear)
-        {
-            var artistNameParameter = artistName != null ?
-                new ObjectParameter("artistName", artistName) :
-                new ObjectParameter("artistName", typeof(string));
-    
-            var selectedYearParameter = selectedYear.HasValue ?
-                new ObjectParameter("selectedYear", selectedYear) :
-                new ObjectParameter("selectedYear", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getArtistSongs_Result>("getArtistSongs", artistNameParameter, selectedYearParameter);
-        }
-    
         public virtual ObjectResult<getListForYear_Result> getListForYear(Nullable<int> listYear)
         {
             var listYearParameter = listYear.HasValue ?
@@ -94,13 +72,13 @@ namespace Top2000.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getArtists");
         }
     
-        public virtual ObjectResult<getAveragePositionOfArtistSong1_Result> getAveragePositionOfArtistSong(string artistName)
+        public virtual ObjectResult<getAveragePositionOfArtistSong_Result> getAveragePositionOfArtistSong(string artistName)
         {
             var artistNameParameter = artistName != null ?
                 new ObjectParameter("artistName", artistName) :
                 new ObjectParameter("artistName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAveragePositionOfArtistSong1_Result>("getAveragePositionOfArtistSong", artistNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAveragePositionOfArtistSong_Result>("getAveragePositionOfArtistSong", artistNameParameter);
         }
     
         public virtual ObjectResult<getAveragePositionOfArtistSong1_Result> getAveragePositionOfArtistSong1(string artistName)

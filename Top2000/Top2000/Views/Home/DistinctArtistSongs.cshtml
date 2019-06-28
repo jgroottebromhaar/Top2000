@@ -12,25 +12,25 @@
 
 @if (Model != null)
 {
-    <table id="lijsttop" class="table table-striped table-responsive" data-sortable>
+<table id="lijsttop" class="table table-striped table-responsive" data-sortable>
+    <tr>
+        <th>Artiest</th>
+        <th>Nummer</th>
+        <th>Jaar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>Artiest</th>
-            <th>Nummer</th>
-            <th>Jaar</th>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SongYear)
+            </td>
         </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ArtistName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SongName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SongYear)
-                </td>
-            </tr>
-        }
-    </table>
+    }
+</table>
 }
