@@ -54,6 +54,19 @@ namespace Top2000.Controllers
             }
         }
 
+        public ActionResult Top10(int? year)
+        {
+            ViewBag.Years = db.getAllYears().ToList();
+            if (year == null)
+            {
+                year = db.List.Max(y => y.ListYear);
+                return View(db.getTop10ForYear(year));
+            }
+            else
+            {
+                return View(db.getTop10ForYear(year));
+            }
+        }
         public ActionResult DistinctArtistSongs(string artist)
         {
             // Viewbag vult de dropdownlist met ArtistNames

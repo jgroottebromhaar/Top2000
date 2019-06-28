@@ -322,6 +322,7 @@
     <Content Include="Views\Home\ArtistSongs.cshtml" />
     <Content Include="Views\Home\AverageArtistSongPosition.cshtml" />
     <Content Include="Views\Home\DistinctArtistSongs.cshtml" />
+    <Content Include="Views\Home\Top10.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
