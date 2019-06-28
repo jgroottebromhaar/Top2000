@@ -189,7 +189,16 @@
     <Compile Include="Models\getAveragePositionOfArtistSong1_Result.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getAveragePositionOfArtistSong_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getDistinctArtistSongs_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getListForYear_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getTop10ForYear_Result.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -312,6 +321,8 @@
     <Content Include="Views\Artist\Index.cshtml" />
     <Content Include="Views\Home\ArtistSongs.cshtml" />
     <Content Include="Views\Home\AverageArtistSongPosition.cshtml" />
+    <Content Include="Views\Home\DistinctArtistSongs.cshtml" />
+    <Content Include="Views\Home\Top10.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

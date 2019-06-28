@@ -11,7 +11,7 @@ namespace Top2000.Models
 {
     using System;
     
-    public partial class getListForYear_Result
+    public partial class getTop10ForYear_Result
     {
         public Nullable<int> ListPosition { get; set; }
         public string ArtistName { get; set; }

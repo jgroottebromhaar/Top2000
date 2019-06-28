@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Top2000.Models.getTop10ForYear_Result>
+
+<div class="lijsttop">
+    <h2>Top 10 nummers</h2>
+    @using (Html.BeginForm())
+    {
+        <p>
+            @Html.DropDownList("year", new SelectList(ViewBag.Years, "year"), new { onChange = "this.form.submit()" })
+        </p>
+    }
+</div>
+
+@if (Model != null)
+{
+    <table id="lijsttop" class="table table-striped table-responsive" data-sortable>
+        <tr>
+            <th>Positie</th>
+            <th>Artiest</th>
+            <th>Nummer</th>
+            <th>Jaar</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ListPosition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtistName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongYear)
+                </td>
+            </tr>
+        }
+    </table>
+}
+

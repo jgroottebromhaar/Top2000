@@ -23,7 +23,9 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Opdracht 2 Elroy", "ArtistSongs", "Home")</li>
-                    <li>@Html.ActionLink("Opdracht 3 Elroy", "AverageArtistSongPosition", "Home")</li>
+                    <li>@Html.ActionLink("Opdracht 3 Elroy", "DistinctArtistSongs", "Home")</li>
+                    <li>@Html.ActionLink("Opdracht 5 Elroy", "AverageArtistSongPosition", "Home")</li>
+                    <li>@Html.ActionLink("Top 10", "Top10", "Home")</li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("List", "Index", "List")</li>
