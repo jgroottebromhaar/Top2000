@@ -189,9 +189,6 @@
     <Compile Include="Models\getAveragePositionOfArtistSong1_Result.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\getAveragePositionOfArtistSong_Result.cs">
-      <DependentUpon>ListModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\getDistinctArtistSongs_Result.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
