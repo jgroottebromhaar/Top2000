@@ -30,7 +30,7 @@
           <Property Name="SongYear" Type="int" />
           <Property Name="ArtistID" Type="int" />
         </EntityType>
-        <Association Name="FK__List__SongID__29572725">
+        <Association Name="FK__List__SongID__74AE54BC">
           <End Role="Song" Type="Self.Song" Multiplicity="1" />
           <End Role="List" Type="Self.List" Multiplicity="*" />
           <ReferentialConstraint>
@@ -42,7 +42,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Song__ArtistID__267ABA7A">
+        <Association Name="FK__Song__ArtistID__71D1E811">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Song" Type="Self.Song" Multiplicity="*" />
           <ReferentialConstraint>
@@ -59,24 +59,27 @@
         <Function Name="getArtistSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="artistName" Type="varchar" Mode="In" />
         </Function>
-        <Function Name="getAveragePositionOfArtistSong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="artistName" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="getAveragePositionOfArtistSong1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="artistName" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="getDistinctArtistSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistName" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="getListForYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ListYear" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTop10ForYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ListYear" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="top2000DBModelStoreContainer">
           <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Song" EntityType="Self.Song" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__List__SongID__29572725" Association="Self.FK__List__SongID__29572725">
+          <AssociationSet Name="FK__List__SongID__74AE54BC" Association="Self.FK__List__SongID__74AE54BC">
             <End Role="Song" EntitySet="Song" />
             <End Role="List" EntitySet="List" />
           </AssociationSet>
-          <AssociationSet Name="FK__Song__ArtistID__267ABA7A" Association="Self.FK__Song__ArtistID__267ABA7A">
+          <AssociationSet Name="FK__Song__ArtistID__71D1E811" Association="Self.FK__Song__ArtistID__71D1E811">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Song" EntitySet="Song" />
           </AssociationSet>
@@ -167,7 +170,13 @@
           <Parameter Name="artistName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getAveragePositionOfArtistSong1" ReturnType="Collection(top2000DBModel.getAveragePositionOfArtistSong1_Result)">
-            <Parameter Name="artistName" Mode="In" Type="String" />
+          <Parameter Name="artistName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getDistinctArtistSongs" ReturnType="Collection(top2000DBModel.getDistinctArtistSongs_Result)">
+          <Parameter Name="artistName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getTop10ForYear" ReturnType="Collection(top2000DBModel.getTop10ForYear_Result)">
+            <Parameter Name="ListYear" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getListForYear_Result">
@@ -199,6 +208,17 @@
           <Property Type="Int32" Name="ListPosition" Nullable="true" />
           <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getDistinctArtistSongs_Result">
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getTop10ForYear_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SongYear" Nullable="true" />
         </ComplexType>
       </Schema>
@@ -257,22 +277,31 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getArtists" FunctionName="top2000DBModel.Store.getArtists" />
-          <FunctionImportMapping FunctionImportName="getAveragePositionOfArtistSong" FunctionName="top2000DBModel.Store.getAveragePositionOfArtistSong">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="top2000DBModel.getAveragePositionOfArtistSong_Result">
-                <ScalarProperty Name="Average" ColumnName="Average" />
-                <ScalarProperty Name="SongName" ColumnName="SongName" />
-                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
-                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getAveragePositionOfArtistSong1" FunctionName="top2000DBModel.Store.getAveragePositionOfArtistSong1">
             <ResultMapping>
               <ComplexTypeMapping TypeName="top2000DBModel.getAveragePositionOfArtistSong1_Result">
                 <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
                 <ScalarProperty Name="SongName" ColumnName="SongName" />
                 <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getDistinctArtistSongs" FunctionName="top2000DBModel.Store.getDistinctArtistSongs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getDistinctArtistSongs_Result">
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getTop10ForYear" FunctionName="top2000DBModel.Store.getTop10ForYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getTop10ForYear_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
                 <ScalarProperty Name="SongYear" ColumnName="SongYear" />
               </ComplexTypeMapping>
             </ResultMapping>

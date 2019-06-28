@@ -89,5 +89,23 @@ namespace Top2000.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getAveragePositionOfArtistSong1_Result>("getAveragePositionOfArtistSong1", artistNameParameter);
         }
+    
+        public virtual ObjectResult<getDistinctArtistSongs_Result> getDistinctArtistSongs(string artistName)
+        {
+            var artistNameParameter = artistName != null ?
+                new ObjectParameter("artistName", artistName) :
+                new ObjectParameter("artistName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getDistinctArtistSongs_Result>("getDistinctArtistSongs", artistNameParameter);
+        }
+    
+        public virtual ObjectResult<getTop10ForYear_Result> getTop10ForYear(Nullable<int> listYear)
+        {
+            var listYearParameter = listYear.HasValue ?
+                new ObjectParameter("ListYear", listYear) :
+                new ObjectParameter("ListYear", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTop10ForYear_Result>("getTop10ForYear", listYearParameter);
+        }
     }
 }

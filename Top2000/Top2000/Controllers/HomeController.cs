@@ -54,6 +54,25 @@ namespace Top2000.Controllers
             }
         }
 
+        public ActionResult DistinctArtistSongs(string artist)
+        {
+            // Viewbag vult de dropdownlist met ArtistNames
+            // Returns String met ArtistName 
+            ViewBag.Artist = db.getArtists().ToList();
+
+            // Bij opstarten view, artist is leeg en moet dus worden gevuld
+            if (artist == null)
+            {
+                artist = db.Artist.Min(y => y.ArtistName);
+                return View(db.getDistinctArtistSongs(artist));
+            }
+            else
+            {
+                // returns view met alle nummers van de geselecteerde artiest
+                return View(db.getDistinctArtistSongs(artist));
+            }
+        }
+
         // returns list met het gemiddelde positie van de nummers van één artiest
         public ActionResult AverageArtistSongPosition(string artist)
         {
