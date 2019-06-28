@@ -55,6 +55,13 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="getAllYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getArtists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="selectedYear" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getArtistSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistName" Type="varchar" Mode="In" />
+          <Parameter Name="selectedYear" Type="int" Mode="In" />
+        </Function>
         <Function Name="getListForYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ListYear" Type="int" Mode="In" />
         </Function>
@@ -146,6 +153,13 @@
             <End Role="List" EntitySet="List" />
           </AssociationSet>
           <FunctionImport Name="getAllYears" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="getArtists" ReturnType="Collection(String)">
+            <Parameter Name="selectedYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getArtistSongs" ReturnType="Collection(top2000DBModel.getArtistSongs_Result)">
+            <Parameter Name="artistName" Mode="In" Type="String" />
+            <Parameter Name="selectedYear" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="getListForYear" ReturnType="Collection(top2000DBModel.getListForYear_Result)">
             <Parameter Name="ListYear" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -154,8 +168,15 @@
             <Parameter Name="selectedYear" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="getArtistSongs_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="getListForYear_Result">
           <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="Int32" Name="Verloop" Nullable="true" />
           <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="SongYear" Nullable="true" />
@@ -200,10 +221,22 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="getAllYears" FunctionName="top2000DBModel.Store.getAllYears" />
+          <FunctionImportMapping FunctionImportName="getArtists" FunctionName="top2000DBModel.Store.getArtists" />
+          <FunctionImportMapping FunctionImportName="getArtistSongs" FunctionName="top2000DBModel.Store.getArtistSongs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getArtistSongs_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getListForYear" FunctionName="top2000DBModel.Store.getListForYear">
             <ResultMapping>
               <ComplexTypeMapping TypeName="top2000DBModel.getListForYear_Result">
                 <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="Verloop" ColumnName="Verloop" />
                 <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
                 <ScalarProperty Name="SongName" ColumnName="SongName" />
                 <ScalarProperty Name="SongYear" ColumnName="SongYear" />
