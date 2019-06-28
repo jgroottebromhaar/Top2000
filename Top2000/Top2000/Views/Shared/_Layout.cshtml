@@ -22,6 +22,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Opdracht 2 Elroy", "ArtistSongs", "Home")</li>
+                    <li>@Html.ActionLink("Opdracht 3 Elroy", "AverageArtistSongPosition", "Home")</li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("List", "Index", "List")</li>
