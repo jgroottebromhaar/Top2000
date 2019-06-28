@@ -189,7 +189,13 @@
     <Compile Include="Models\getAveragePositionOfArtistSong1_Result.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\getDistinctArtistSongs_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\getListForYear_Result.cs">
+      <DependentUpon>ListModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\getTop10ForYear_Result.cs">
       <DependentUpon>ListModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />

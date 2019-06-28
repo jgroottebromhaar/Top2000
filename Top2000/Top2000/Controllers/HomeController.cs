@@ -105,18 +105,5 @@ namespace Top2000.Controllers
                 return View(db.getAveragePositionOfArtistSong1(artist));
             }
         }
-
-        public ActionResult SearchResult(string search, int? year)
-        {
-            ViewBag.Search = db.searchFunction(search, year).ToList();
-            if (year == null)
-            {
-                return View(db.searchFunction(search, year));
-            }
-            else
-            {
-                return View(db.searchFunction(search, year));
-            }
-        }
     }
 }

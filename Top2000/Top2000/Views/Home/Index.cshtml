@@ -6,8 +6,6 @@
     {
         <p>
             @Html.DropDownList("year", new SelectList(ViewBag.Years, "year"), new { onChange = "this.form.submit()" })
-            @Html.TextBox("search", null, new { @placeholder = "Zoek titel of artiest..." })
-            <input id="searchbtn" type="submit" value="Search" />
         </p>
     }
 </div>

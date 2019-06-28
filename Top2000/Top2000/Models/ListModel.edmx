@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="top2000DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="ArtistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArtistName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="ListYear" />
+            <PropertyRef Name="SongID" />
+          </Key>
+          <Property Name="ListPosition" Type="int" />
+          <Property Name="ListYear" Type="int" Nullable="false" />
+          <Property Name="SongID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="SongID" />
+          </Key>
+          <Property Name="SongID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SongName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SongYear" Type="int" />
+          <Property Name="ArtistID" Type="int" />
+        </EntityType>
+        <Association Name="FK__List__SongID__40058253">
+          <End Role="Song" Type="Self.Song" Multiplicity="1" />
+          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Song">
+              <PropertyRef Name="SongID" />
+            </Principal>
+            <Dependent Role="List">
+              <PropertyRef Name="SongID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Song__ArtistID__3D2915A8">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
+          <End Role="Song" Type="Self.Song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="ArtistID" />
+            </Principal>
+            <Dependent Role="Song">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getAllYears" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getArtists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getArtistSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getAveragePositionOfArtistSong1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getDistinctArtistSongs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="artistName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="getListForYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ListYear" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTop10ForYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ListYear" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="top2000DBModelStoreContainer">
+          <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Song" EntityType="Self.Song" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__List__SongID__40058253" Association="Self.FK__List__SongID__40058253">
+            <End Role="Song" EntitySet="Song" />
+            <End Role="List" EntitySet="List" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Song__ArtistID__3D2915A8" Association="Self.FK__Song__ArtistID__3D2915A8">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Song" EntitySet="Song" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="top2000DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="ArtistID" />
+          </Key>
+          <Property Name="ArtistID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArtistName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Song" Relationship="Self.FK__Song__ArtistID__3D2915A8" FromRole="Artist" ToRole="Song" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="ListYear" />
+            <PropertyRef Name="SongID" />
+          </Key>
+          <Property Name="ListPosition" Type="Int32" />
+          <Property Name="ListYear" Type="Int32" Nullable="false" />
+          <Property Name="SongID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Song" Relationship="Self.FK__List__SongID__40058253" FromRole="List" ToRole="Song" />
+        </EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="SongID" />
+          </Key>
+          <Property Name="SongID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SongName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SongYear" Type="Int32" />
+          <Property Name="ArtistID" Type="Int32" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK__Song__ArtistID__3D2915A8" FromRole="Song" ToRole="Artist" />
+          <NavigationProperty Name="List" Relationship="Self.FK__List__SongID__40058253" FromRole="Song" ToRole="List" />
+        </EntityType>
+        <Association Name="FK__Song__ArtistID__3D2915A8">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
+          <End Role="Song" Type="Self.Song" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="ArtistID" />
+            </Principal>
+            <Dependent Role="Song">
+              <PropertyRef Name="ArtistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__List__SongID__40058253">
+          <End Role="Song" Type="Self.Song" Multiplicity="1" />
+          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Song">
+              <PropertyRef Name="SongID" />
+            </Principal>
+            <Dependent Role="List">
+              <PropertyRef Name="SongID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="top2000DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artist" EntityType="Self.Artist" />
+          <EntitySet Name="List" EntityType="Self.List" />
+          <EntitySet Name="Song" EntityType="Self.Song" />
+          <AssociationSet Name="FK__Song__ArtistID__3D2915A8" Association="Self.FK__Song__ArtistID__3D2915A8">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Song" EntitySet="Song" />
+          </AssociationSet>
+          <AssociationSet Name="FK__List__SongID__40058253" Association="Self.FK__List__SongID__40058253">
+            <End Role="Song" EntitySet="Song" />
+            <End Role="List" EntitySet="List" />
+          </AssociationSet>
+          <FunctionImport Name="getAllYears" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="getArtists" ReturnType="Collection(String)" />
+          <FunctionImport Name="getArtistSongs" ReturnType="Collection(top2000DBModel.getArtistSongs_Result)">
+          <Parameter Name="artistName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getAveragePositionOfArtistSong1" ReturnType="Collection(top2000DBModel.getAveragePositionOfArtistSong1_Result)">
+          <Parameter Name="artistName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getDistinctArtistSongs" ReturnType="Collection(top2000DBModel.getDistinctArtistSongs_Result)">
+          <Parameter Name="artistName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getListForYear" ReturnType="Collection(top2000DBModel.getListForYear_Result)">
+          <Parameter Name="ListYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getTop10ForYear" ReturnType="Collection(top2000DBModel.getTop10ForYear_Result)">
+          <Parameter Name="ListYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="getArtistSongs_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+          <Property Type="Int32" Name="ListYear" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getAveragePositionOfArtistSong1_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getDistinctArtistSongs_Result">
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getListForYear_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="Int32" Name="Verloop" Nullable="true" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getTop10ForYear_Result">
+          <Property Type="Int32" Name="ListPosition" Nullable="true" />
+          <Property Type="Int32" Name="Verloop" Nullable="true" />
+          <Property Type="String" Name="ArtistName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SongName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SongYear" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="top2000DBModelStoreContainer" CdmEntityContainer="top2000DBEntities">
+          <EntitySetMapping Name="Artist">
+            <EntityTypeMapping TypeName="top2000DBModel.Artist">
+              <MappingFragment StoreEntitySet="Artist">
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="List">
+            <EntityTypeMapping TypeName="top2000DBModel.List">
+              <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="ListYear" ColumnName="ListYear" />
+                <ScalarProperty Name="SongID" ColumnName="SongID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Song">
+            <EntityTypeMapping TypeName="top2000DBModel.Song">
+              <MappingFragment StoreEntitySet="Song">
+                <ScalarProperty Name="SongID" ColumnName="SongID" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+                <ScalarProperty Name="ArtistID" ColumnName="ArtistID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="getAllYears" FunctionName="top2000DBModel.Store.getAllYears" />
+          <FunctionImportMapping FunctionImportName="getArtists" FunctionName="top2000DBModel.Store.getArtists" />
+          <FunctionImportMapping FunctionImportName="getArtistSongs" FunctionName="top2000DBModel.Store.getArtistSongs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getArtistSongs_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+                <ScalarProperty Name="ListYear" ColumnName="ListYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getAveragePositionOfArtistSong1" FunctionName="top2000DBModel.Store.getAveragePositionOfArtistSong1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getAveragePositionOfArtistSong1_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getDistinctArtistSongs" FunctionName="top2000DBModel.Store.getDistinctArtistSongs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getDistinctArtistSongs_Result">
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getListForYear" FunctionName="top2000DBModel.Store.getListForYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getListForYear_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="Verloop" ColumnName="Verloop" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getTop10ForYear" FunctionName="top2000DBModel.Store.getTop10ForYear">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="top2000DBModel.getTop10ForYear_Result">
+                <ScalarProperty Name="ListPosition" ColumnName="ListPosition" />
+                <ScalarProperty Name="Verloop" ColumnName="Verloop" />
+                <ScalarProperty Name="ArtistName" ColumnName="ArtistName" />
+                <ScalarProperty Name="SongName" ColumnName="SongName" />
+                <ScalarProperty Name="SongYear" ColumnName="SongYear" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
