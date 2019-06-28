@@ -14,6 +14,7 @@ namespace Top2000.Models
     public partial class getListForYear_Result
     {
         public Nullable<int> ListPosition { get; set; }
+        public Nullable<int> Verloop { get; set; }
         public string ArtistName { get; set; }
         public string SongName { get; set; }
         public Nullable<int> SongYear { get; set; }
